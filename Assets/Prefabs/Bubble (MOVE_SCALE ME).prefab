@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6352851953964099906}
   - component: {fileID: 6352851953964099917}
   - component: {fileID: 6352851953964099916}
-  - component: {fileID: 6352851953964099919}
+  - component: {fileID: 1380718050525886239}
   m_Layer: 0
   m_Name: Bubble (MOVE_SCALE ME)
   m_TagString: Untagged
@@ -82,7 +82,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6352851953964099919
+--- !u!114 &1380718050525886239
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6352851953964099913}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9740836530e31614b98d4cf2a0161ac4, type: 3}
+  m_Script: {fileID: 11500000, guid: 5211dcf9f581403f9463808f22f1f4cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bubbleShading: {fileID: 0}
