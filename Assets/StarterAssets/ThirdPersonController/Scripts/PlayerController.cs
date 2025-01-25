@@ -19,6 +19,7 @@ namespace StarterAssets
         public static PlayerController Instance;
 
         public GameObject pingEffect;
+        public Transform playerHead;
         
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
@@ -74,6 +75,7 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+        public Vector3 bounceVelocity;
         public Vector3 desiredVelocity;
 
         // cinemachine
@@ -260,9 +262,11 @@ namespace StarterAssets
             Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
             // move the player
-            _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
+            _controller.Move(bounceVelocity * Time.deltaTime + targetDirection.normalized * (_speed * Time.deltaTime) +
                              new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
+            bounceVelocity *= 0.8f;
+            
 			// update animator if using character
 			if (_hasAnimator)
             {
