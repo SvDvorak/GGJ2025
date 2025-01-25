@@ -47,7 +47,7 @@ public class BubbleChildShading : MonoBehaviour
 
 	void FindRendererMaterials()
     {
-        var childRenderers = GetComponentsInChildren<Renderer>();
+        var childRenderers = GetComponentsInChildren<Renderer>(true);
 
         foreach (var childRenderer in childRenderers)
         {
