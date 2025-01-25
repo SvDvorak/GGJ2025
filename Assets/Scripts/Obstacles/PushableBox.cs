@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class PushableBox : MonoBehaviour
@@ -98,8 +99,7 @@ public class PushableBox : MonoBehaviour
 
     void DoPush(Vector3 target)
     {
-        // ADD TWEEN HERE
-		this.transform.position = target;
+        transform.DOMove(target, 0.5f);
 	}
 
 	public void WantsToPush(Vector3 direction)

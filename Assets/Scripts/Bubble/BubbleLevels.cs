@@ -35,7 +35,7 @@ public class BubbleLevels : MonoBehaviour
     private void UpdateMaskLevel(float time)
     {
         var level = levels[currentLevel];
-        bubbleMask.DOScale(level.transform.localScale, time).SetEase(Ease.InOutBounce);
+        bubbleMask.DOScale(level.transform.localScale, time).SetEase(Ease.OutBounce);
         bubbleMask.DOMove(level.transform.position, time).SetEase(Ease.InOutSine);
     }
 }
