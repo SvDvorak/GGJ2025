@@ -12,8 +12,21 @@ Shader "Bubble/MaskedStandard"
     }
     SubShader
     {
+
+        // MASKED FRONT FACING PASS //
+
         Tags { "RenderType"="Opaque" }
         LOD 200
+
+        /*
+        Stencil
+        {
+            Ref 0
+            WriteMask 8
+            Comp Always
+            Fail Replace
+        }
+        */
         
         CGPROGRAM
         // Physically based Standard lighting model, and enable shadows on all light types
@@ -60,6 +73,68 @@ Shader "Bubble/MaskedStandard"
             o.Alpha = c.a;
         }
         ENDCG
+
+
+        // BACK FACING PASS //
+        Pass
+        {
+            Tags { "RenderType"="Opaque" "Queue"="Geometry-100"}
+
+            Cull Front
+            ZWrite Off
+            ColorMask 0
+
+            Stencil
+            {
+                Ref 8
+                WriteMask 8
+                Pass Replace
+            }
+
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            // make fog work
+            #pragma multi_compile_fog
+
+            #include "UnityCG.cginc"
+
+            struct appdata
+            {
+                float4 vertex : POSITION;
+                float2 uv : TEXCOORD0;
+            };
+
+            struct v2f
+            {
+                float4 worldPos : TEXCOORD0;
+                UNITY_FOG_COORDS(1)
+                float4 vertex : SV_POSITION;
+            };
+
+            float4 _BubbleOrigin;
+            float _BubbleRangeSqr;
+
+            v2f vert (appdata v)
+            {
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                UNITY_TRANSFER_FOG(o,o.vertex);
+                o.worldPos = mul(unity_ObjectToWorld, v.vertex);
+                return o;
+            }
+
+            fixed4 frag (v2f i) : SV_Target
+            {
+                float3 deltaBubble = i.worldPos - _BubbleOrigin;
+                float dstSqr = dot(deltaBubble, deltaBubble);
+
+                clip(_BubbleRangeSqr - dstSqr);
+
+                return fixed4(0, 0, 0, 1);
+            }
+            ENDCG
+        }
     }
     FallBack "Diffuse"
 }
