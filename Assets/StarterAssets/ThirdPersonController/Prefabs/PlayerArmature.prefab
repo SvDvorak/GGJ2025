@@ -1082,6 +1082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pingEffect: {fileID: 294994639694042068, guid: dc9f1e3aae15a6646bb55cc03e5039ea, type: 3}
   MoveSpeed: 2
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
@@ -1098,9 +1099,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 274649b0e221539409070ebf6c18918b, type: 3}
   - {fileID: 8300000, guid: a3194b8bbc96ef84fab1f98f4b7dae3e, type: 3}
   FootstepAudioVolume: 0.3
-  JumpHeight: 0
   Gravity: -15
-  JumpTimeout: 0.3
   FallTimeout: 0.15
   PingTimeout: 1
   Grounded: 1
@@ -1114,6 +1113,7 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
+  desiredVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &5885216827943657505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1144,7 +1144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   move: {x: 0, y: 0}
-  jump: 0
   ping: 0
   analogMovement: 0
   cursorLocked: 1
@@ -1258,6 +1257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4dd5b8f5241c944280b70114e6c2be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCamera: {fileID: 0}
 --- !u!1 &4523139366846529165
 GameObject:
   m_ObjectHideFlags: 0

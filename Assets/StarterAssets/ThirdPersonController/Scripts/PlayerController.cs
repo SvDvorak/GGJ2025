@@ -14,8 +14,12 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
     [RequireComponent(typeof(PlayerInput))]
 #endif
-    public class ThirdPersonController : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
+        public static PlayerController Instance;
+
+        public GameObject pingEffect;
+        
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
@@ -127,6 +131,8 @@ namespace StarterAssets
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
+
+            Instance = this;
         }
 
         private void Start()
@@ -318,6 +324,8 @@ namespace StarterAssets
                 _animator.SetBool(_animIDPing, true);
                 _pingTimeoutDelta = PingTimeout;
                 _input.ping = false;
+
+                Instantiate(pingEffect, transform);
             }
 
             _pingTimeoutDelta = Mathf.Max(0, _pingTimeoutDelta - Time.deltaTime);
@@ -365,11 +373,9 @@ namespace StarterAssets
 
         private void OnTriggerEnter(Collider other)
         {
-            var pickup = other.GetComponent<Pickup>();
-            if(pickup)
-            {
-                pickup.Trigger();
-            }
+            var interactable = other.GetComponent<Interactable>();
+            if(interactable)
+                interactable.Touch();
         }
     }
 }
