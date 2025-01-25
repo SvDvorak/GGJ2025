@@ -8,6 +8,7 @@ public class BubbleLevels : MonoBehaviour
     public static BubbleLevels Instance;
 
     public Transform bubbleMask;
+    public List<float> cameraSizes;
     private List<MeshRenderer> levels;
     private int currentLevel;
 
@@ -37,5 +38,6 @@ public class BubbleLevels : MonoBehaviour
         var level = levels[currentLevel];
         bubbleMask.DOScale(level.transform.localScale, time).SetEase(Ease.OutBounce);
         bubbleMask.DOMove(level.transform.position, time).SetEase(Ease.InOutSine);
+        Camera.main.DOOrthoSize(cameraSizes[currentLevel], time);
     }
 }
