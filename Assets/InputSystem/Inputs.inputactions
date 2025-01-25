@@ -1,5 +1,5 @@
 {
-    "name": "StarterAssets",
+    "name": "Inputs",
     "maps": [
         {
             "name": "Player",
@@ -138,7 +138,7 @@
                 {
                     "name": "",
                     "id": "1711c9ee-ebc2-4549-abe6-ab57d1b842cd",
-                    "path": "<Keyboard>/ctrl",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
@@ -149,7 +149,7 @@
                 {
                     "name": "",
                     "id": "d6bb63cf-1fa0-4a18-9abb-4f774c2df129",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",

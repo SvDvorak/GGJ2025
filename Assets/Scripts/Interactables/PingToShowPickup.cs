@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PingToShowPickup : Interactable
 {
-    public GameObject targetPickup;
+    [FormerlySerializedAs("targetPickup")] public GameObject targetExpander;
+    public AudioClip pingSound;
     
     public override void Ping()
     {
-        targetPickup.SetActive(true);
+        PlaySound(pingSound);
+        targetExpander.SetActive(true);
     }
 }

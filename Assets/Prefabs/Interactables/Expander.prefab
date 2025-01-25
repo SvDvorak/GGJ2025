@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3745012255411821768}
   - component: {fileID: 3745012255411821771}
   m_Layer: 6
-  m_Name: Pickup
+  m_Name: Expander
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,7 +107,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a3194b8bbc96ef84fab1f98f4b7dae3e, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -205,3 +205,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c82669152ea19fa43becc46969ea7dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupSound: {fileID: 8300000, guid: e57b63b093c56904292ba511e58ec981, type: 3}
+  pingSound: {fileID: 8300000, guid: 278d9cc57f5bcaa4bb3128b167c9ad59, type: 3}

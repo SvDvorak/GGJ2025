@@ -2,16 +2,12 @@ using DG.Tweening;
 using StarterAssets;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
-public class Pickup : Interactable
+public class Expander : Interactable
 {
-    private AudioSource pickupSound;
+    public AudioClip pickupSound;
+    public AudioClip pingSound;
+    
     private bool isAnimating;
-
-    private void Awake()
-    {
-        pickupSound = GetComponent<AudioSource>();
-    }
 
     public override void Touch()
     {
@@ -19,7 +15,7 @@ public class Pickup : Interactable
             return;
 
         isAnimating = true;
-        pickupSound.Play();
+        PlaySound(pickupSound);
         DOTween.Sequence()
             .Append(transform.DOScale(0, 0.15f).SetEase(Ease.InBounce))
             .AppendCallback(() => BubbleLevels.Instance.ExpandToNextLevel());
@@ -31,12 +27,12 @@ public class Pickup : Interactable
             return;
 
         isAnimating = true;
+        PlaySound(pingSound);
         var position = PlayerController.Instance.transform.position;
         var pickupPosition = transform.position;
         var fromPlayer = (pickupPosition - position).normalized;
         DOTween.Sequence()
-            .Append(transform.DOMove(pickupPosition + fromPlayer * 0.1f, 0.1f).SetEase(Ease.InBounce))
-            .Append(transform.DOMove(pickupPosition, 0.1f).SetEase(Ease.OutBounce))
+            .Append(transform.DOPunchPosition(fromPlayer * 0.1f, 0.2f, 20))
             .AppendCallback(() => isAnimating = false);
     }
 }
