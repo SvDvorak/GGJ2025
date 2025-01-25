@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ground
+  m_Name: Plant2
   m_Shader: {fileID: 4800000, guid: 6d718fccc7d08ab42882b8911f8880bf, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -75,6 +75,6 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BubbleOrigin: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 0.9528302, g: 0.76680416, b: 0.5528213, a: 1}
+    - _Color: {r: 0.7467277, g: 0.8962264, b: 0.58762014, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
