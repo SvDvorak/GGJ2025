@@ -6,7 +6,9 @@ using StarterAssets;
 public class PlayerPush : MonoBehaviour
 {
     public const float PUSH_RAY_VERTICAL_OFFSET = 0.25f;
-    public const int PUSHABLE_MASK = (1 << 3);
+    public const float PUSH_RAY_ALT_VERTICAL_OFFSET = 0.85f;
+
+	public const int PUSHABLE_MASK = (1 << 3);
 
 
 	public Camera playerCamera;
@@ -52,16 +54,24 @@ public class PlayerPush : MonoBehaviour
         Vector3 worldInput = worldRight * snappedInput.x + worldForward * snappedInput.y;
 
         var rayOrigin = this.transform.position;
+        var rayOrigin2 = rayOrigin;
         rayOrigin.y += PUSH_RAY_VERTICAL_OFFSET;
+        rayOrigin2.y += PUSH_RAY_ALT_VERTICAL_OFFSET;
 
         Debug.DrawRay(rayOrigin, worldInput, Color.red);
 
-        if(Physics.Raycast(rayOrigin, worldInput, out var hitInfo, 1f, PUSHABLE_MASK))
-        {
-            var pushable = hitInfo.collider.GetComponent<PushableBox>();
-            pushable.WantsToPush(worldInput);
-        }
+        CastPushRay(rayOrigin, worldInput);
+        CastPushRay(rayOrigin2, worldInput);
     }
+
+    void CastPushRay(Vector3 origin, Vector3 direction)
+    {
+		if (Physics.Raycast(origin, direction, out var hitInfo, 1f, PUSHABLE_MASK))
+		{
+			var pushable = hitInfo.collider.GetComponent<PushableBox>();
+			pushable.WantsToPush(direction);
+		}
+	}
 
     static Vector3 ProjectHorizontal(Vector3 direction)
     {

@@ -6,16 +6,28 @@ public class PushableBox : MonoBehaviour
 {
     const int PUSH_COLLISION_LAYER_MASK = 1 | (1 << 3);
 
-    const float OVERLAP_VERTICAL_OFFSET = 0.4f;
-    const float OVERLAP_VERTICAL_SIZE = 0.1f;
+    const float OVERLAP_VERTICAL_OFFSET = 0.6f;
+    const float OVERLAP_VERTICAL_SIZE = 0.05f;
     const float OVERLAP_HORIZONTAL_SIZE = 0.4f;
+
+    const float TERMINAL_FALL_SPEED = 10f;
 
     bool isTryingToPush;
 
     Vector3 pushDirection;
     float pushAmount = 0f;
 
-    void Update()
+    Collider collider;
+
+	float ySpeed = 0f;
+    bool isFalling;
+
+	void Awake()
+    {
+        this.collider = GetComponent<Collider>();
+    }
+
+    void FixedUpdate()
     {
         if(this.isTryingToPush)
         {
@@ -31,7 +43,28 @@ public class PushableBox : MonoBehaviour
         }
 
         this.isTryingToPush = false;
+
+        SnapToGround();
     }
+
+    void SnapToGround()
+    {
+        var rayOrigin = this.transform.position;
+        rayOrigin.y += OVERLAP_VERTICAL_OFFSET;
+
+        this.isFalling = !Physics.Raycast(rayOrigin, Vector3.down, out var hitInfo, 1f, PUSH_COLLISION_LAYER_MASK);
+
+        if(isFalling)
+        {
+            this.ySpeed = Mathf.Max(this.ySpeed - 10f * Time.deltaTime, -TERMINAL_FALL_SPEED);
+            this.transform.position = this.transform.position + new Vector3(0f, this.ySpeed * Time.deltaTime, 0f);
+        }
+        else
+        {
+            this.ySpeed = 0f;
+            this.transform.position = hitInfo.point;
+		}
+	}
 
     void TryPush()
     {
@@ -44,7 +77,11 @@ public class PushableBox : MonoBehaviour
         overlapTarget.y += OVERLAP_VERTICAL_OFFSET;
         var halfExtents = new Vector3(OVERLAP_HORIZONTAL_SIZE, OVERLAP_VERTICAL_SIZE, OVERLAP_HORIZONTAL_SIZE);
 
-        if(Physics.CheckBox(overlapTarget, halfExtents, Quaternion.identity, PUSH_COLLISION_LAYER_MASK))
+        this.collider.enabled = false;
+        bool isBlocked = Physics.CheckBox(overlapTarget, halfExtents, Quaternion.identity, PUSH_COLLISION_LAYER_MASK);
+        this.collider.enabled = true;
+
+		if (isBlocked)
         {
             PushBlocked();
         }
@@ -61,6 +98,7 @@ public class PushableBox : MonoBehaviour
 
     void DoPush(Vector3 target)
     {
+        // ADD TWEEN HERE
 		this.transform.position = target;
 	}
 
