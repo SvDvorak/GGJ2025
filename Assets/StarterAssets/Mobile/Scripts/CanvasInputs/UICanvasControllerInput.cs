@@ -20,7 +20,6 @@ namespace StarterAssets
 
         public void VirtualJumpInput(bool virtualJumpState)
         {
-            inputs.JumpInput(virtualJumpState);
         }
 
         public void VirtualSprintInput(bool virtualSprintState)
