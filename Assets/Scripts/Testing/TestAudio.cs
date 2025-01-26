@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class TestAudio : MonoBehaviour
 {
-    public LayeredAudio layeredAudio;
+    LayeredAudio layeredAudio;
+
+    private void Start()
+    {
+        this.layeredAudio = FindObjectOfType<LayeredAudio>();
+    }
 
     // Update is called once per frame
     void Update()
