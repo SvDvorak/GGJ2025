@@ -18,6 +18,7 @@ namespace StarterAssets
     {
         public static PlayerController Instance;
 
+        public Animator animator;
         public GameObject pingEffect;
         public Transform playerHead;
         
@@ -95,6 +96,7 @@ namespace StarterAssets
         private float _pingTimeoutDelta;
 
         // animation IDs
+        private int _walkID;
         private int _animIDSpeed;
         private int _animIDGrounded;
         private int _animIDPing;
@@ -104,7 +106,6 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
 #endif
-        private Animator _animator;
         private CharacterController _controller;
         private Inputs _input;
         private GameObject _mainCamera;
@@ -141,7 +142,7 @@ namespace StarterAssets
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
             
-            _hasAnimator = TryGetComponent(out _animator);
+            _hasAnimator = animator != null;
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<Inputs>();
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
@@ -158,8 +159,6 @@ namespace StarterAssets
 
         private void Update()
         {
-            _hasAnimator = TryGetComponent(out _animator);
-
             JumpAndGravity();
             GroundedCheck();
             Move();
@@ -173,9 +172,10 @@ namespace StarterAssets
 
         private void AssignAnimationIDs()
         {
+            _walkID = Animator.StringToHash("IsWalking");
             _animIDSpeed = Animator.StringToHash("Speed");
             _animIDGrounded = Animator.StringToHash("Grounded");
-            _animIDPing = Animator.StringToHash("Ping");
+            _animIDPing = Animator.StringToHash("IsPinging");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
         }
@@ -191,7 +191,7 @@ namespace StarterAssets
             // update animator if using character
             if (_hasAnimator)
             {
-                _animator.SetBool(_animIDGrounded, Grounded);
+                //_animator.SetBool(_animIDGrounded, Grounded);
             }
         }
 
@@ -270,8 +270,9 @@ namespace StarterAssets
 			// update animator if using character
 			if (_hasAnimator)
             {
-                _animator.SetFloat(_animIDSpeed, _animationBlend);
-                _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+                animator.SetBool(_walkID, _animationBlend > 0);
+                //_animator.SetFloat(_animIDSpeed, _animationBlend);
+                //_animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
             }
         }
 
@@ -285,7 +286,7 @@ namespace StarterAssets
                 // update animator if using character
                 if (_hasAnimator)
                 {
-                    _animator.SetBool(_animIDFreeFall, false);
+                    //_animator.SetBool(_animIDFreeFall, false);
                 }
 
                 // stop our velocity dropping infinitely when grounded
@@ -306,7 +307,7 @@ namespace StarterAssets
                     // update animator if using character
                     if (_hasAnimator)
                     {
-                        _animator.SetBool(_animIDFreeFall, true);
+                        //_animator.SetBool(_animIDFreeFall, true);
                     }
                 }
             }
@@ -321,11 +322,11 @@ namespace StarterAssets
         private void Ping()
         {
             if(!_input.ping)
-                _animator.SetBool(_animIDPing, false);
+                animator.SetBool(_animIDPing, false);
                 
             if(Grounded && _input.ping && _hasAnimator && _pingTimeoutDelta <= 0)
             {
-                _animator.SetBool(_animIDPing, true);
+                animator.SetBool(_animIDPing, true);
                 _pingTimeoutDelta = PingTimeout;
                 _input.ping = false;
 
