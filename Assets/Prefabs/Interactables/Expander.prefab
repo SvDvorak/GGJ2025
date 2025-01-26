@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c82669152ea19fa43becc46969ea7dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupSound: {fileID: 8300000, guid: e57b63b093c56904292ba511e58ec981, type: 3}
+  pickupSound: {fileID: 8300000, guid: 99b92de5ad2f10b41b15efbdc64d9724, type: 3}
   pingSound: {fileID: 8300000, guid: 278d9cc57f5bcaa4bb3128b167c9ad59, type: 3}
 --- !u!1001 &124547292067858101
 PrefabInstance:

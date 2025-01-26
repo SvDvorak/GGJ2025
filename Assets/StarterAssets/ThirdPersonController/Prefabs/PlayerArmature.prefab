@@ -1122,17 +1122,12 @@ MonoBehaviour:
   SpeedChangeRate: 10
   LandingAudioClip: {fileID: 8300000, guid: ff697d3070687ce4583faa0561a145a2, type: 3}
   FootstepAudioClips:
-  - {fileID: 8300000, guid: 72f526a6a9890f643a88e85a61c86c8a, type: 3}
-  - {fileID: 8300000, guid: 85016e0f2b01da248b9663dd49a161b0, type: 3}
-  - {fileID: 8300000, guid: 186de84b3207156479abe98f4958fed0, type: 3}
-  - {fileID: 8300000, guid: 1a91fcd19acf1e54bba0945d9f390849, type: 3}
-  - {fileID: 8300000, guid: 14e8a8d2158bec840b56c54f5266e692, type: 3}
-  - {fileID: 8300000, guid: 29841e7d5bbfb5b419c9ad16ca8bc4c1, type: 3}
-  - {fileID: 8300000, guid: dd1af302b8902684d9381de1f2d3a5af, type: 3}
-  - {fileID: 8300000, guid: 67c8b33e424ccdc4486edf538ab91c5a, type: 3}
-  - {fileID: 8300000, guid: 274649b0e221539409070ebf6c18918b, type: 3}
-  - {fileID: 8300000, guid: a3194b8bbc96ef84fab1f98f4b7dae3e, type: 3}
-  FootstepAudioVolume: 0.3
+  - {fileID: 8300000, guid: d589a578268392f4ab20d8999512fd16, type: 3}
+  - {fileID: 8300000, guid: 9b83b2f06b3c114439c2c3b62e3d6a72, type: 3}
+  - {fileID: 8300000, guid: cf469b6419b153749b64407d31dc5180, type: 3}
+  - {fileID: 8300000, guid: a0041b171c3e7e44da00866b21b4218a, type: 3}
+  - {fileID: 8300000, guid: edcdce5d5a26161458c00e225c0846fa, type: 3}
+  FootstepAudioVolume: 1
   Gravity: -15
   FallTimeout: 0.15
   PingTimeout: 1

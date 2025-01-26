@@ -14,6 +14,9 @@ public class Exit : Interactable
     private Tween MovePlayerOut()
     {
         PlayerController.Instance.enabled = false;
-        return PlayerController.Instance.transform.DOMoveY(20, 1).SetEase(Ease.InSine);
+        var playerTransform = PlayerController.Instance.transform;
+        return DOTween.Sequence()
+            .Append(playerTransform.DOMove(transform.position, 1))
+            .Append(playerTransform.DOMoveY(20, 1).SetEase(Ease.InSine));
     }
 }
