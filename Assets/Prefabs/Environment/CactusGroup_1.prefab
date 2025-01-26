@@ -39,6 +39,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9163087879593953648}
     m_Modifications:
+    - target: {fileID: 353005260900651492, guid: a2093c9b09a7ae440a547f63c137626e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 33d09b44a506a5e4a8edbd0c21aae8d5, type: 2}
+    - target: {fileID: 3034535753360596439, guid: a2093c9b09a7ae440a547f63c137626e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 33d09b44a506a5e4a8edbd0c21aae8d5, type: 2}
+    - target: {fileID: 5678377402187920187, guid: a2093c9b09a7ae440a547f63c137626e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 33d09b44a506a5e4a8edbd0c21aae8d5, type: 2}
     - target: {fileID: 8566239341577684935, guid: a2093c9b09a7ae440a547f63c137626e, type: 3}
       propertyPath: m_Name
       value: Cactus (4)
@@ -113,6 +125,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9163087879593953648}
     m_Modifications:
+    - target: {fileID: 353005260900651492, guid: a2093c9b09a7ae440a547f63c137626e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 33d09b44a506a5e4a8edbd0c21aae8d5, type: 2}
+    - target: {fileID: 3034535753360596439, guid: a2093c9b09a7ae440a547f63c137626e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 33d09b44a506a5e4a8edbd0c21aae8d5, type: 2}
+    - target: {fileID: 5678377402187920187, guid: a2093c9b09a7ae440a547f63c137626e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 33d09b44a506a5e4a8edbd0c21aae8d5, type: 2}
     - target: {fileID: 8566239341577684935, guid: a2093c9b09a7ae440a547f63c137626e, type: 3}
       propertyPath: m_Name
       value: Cactus (3)

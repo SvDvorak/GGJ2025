@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 551858382}
   - component: {fileID: 551858385}
   - component: {fileID: 551858384}
+  - component: {fileID: 279916930}
   m_Layer: 0
   m_Name: BubbleVisual
   m_TagString: Untagged
@@ -81,6 +82,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &279916930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551858381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9201245d72484351a4fe6cc66c7649ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6352851953964099913
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,6 +106,7 @@ GameObject:
   - component: {fileID: 6352851953964099917}
   - component: {fileID: 6352851953964099916}
   - component: {fileID: 1380718050525886239}
+  - component: {fileID: 354760745}
   m_Layer: 0
   m_Name: BubbleMask
   m_TagString: Untagged
@@ -177,3 +191,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubbleShading: {fileID: 0}
+--- !u!114 &354760745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6352851953964099913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbf005e3caa5fa84d9e3068b80cc1230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pushbackStrength: 3
+  playerHeadRadius: 0.5
