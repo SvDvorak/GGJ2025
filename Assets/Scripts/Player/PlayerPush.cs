@@ -35,33 +35,62 @@ public class PlayerPush : MonoBehaviour
 
     void UpdateDesiredPush(Vector2 inputVector)
     {
-        Vector2 snappedInput = inputVector;
+        Vector2 inputVec = inputVector;
 
-        snappedInput.x = SnapInput(snappedInput.x);
-        snappedInput.y = SnapInput(snappedInput.y);
+		var worldRight = ProjectHorizontal(this.playerCamera.transform.right);
+		var worldForward = ProjectHorizontal(this.playerCamera.transform.forward);
 
-        if (snappedInput == Vector2.zero) return;
+		inputVec.x = SnapInput(inputVec.x);
+        inputVec.y = SnapInput(inputVec.y);
 
-        if (Mathf.Abs(snappedInput.x) > 0f && Mathf.Abs(snappedInput.y) > 0f)
+        if (inputVec == Vector2.zero) return;
+
+        if(inputVec.magnitude > 1f)
         {
-            // Only allow pushing in a single axis
-            return;
+            inputVec = inputVec.normalized;
         }
 
-        var worldRight = ProjectHorizontal(this.playerCamera.transform.right);
-        var worldForward = ProjectHorizontal(this.playerCamera.transform.forward);
+        Vector3 worldInput = inputVec.x * worldRight + inputVec.y * worldForward;
 
-        Vector3 worldInput = worldRight * snappedInput.x + worldForward * snappedInput.y;
+        if(!TryMatchWorldAxis(worldInput, out Vector3 worldSnappedInput))
+        {
+            return;
+        }
 
         var rayOrigin = this.transform.position;
         var rayOrigin2 = rayOrigin;
         rayOrigin.y += PUSH_RAY_VERTICAL_OFFSET;
         rayOrigin2.y += PUSH_RAY_ALT_VERTICAL_OFFSET;
 
-        Debug.DrawRay(rayOrigin, worldInput, Color.red);
+        Debug.DrawRay(rayOrigin, worldSnappedInput, Color.red);
 
-        CastPushRay(rayOrigin, worldInput);
-        CastPushRay(rayOrigin2, worldInput);
+        CastPushRay(rayOrigin, worldSnappedInput);
+        CastPushRay(rayOrigin2, worldSnappedInput);
+    }
+
+    static readonly Vector3[] VALID_PUSH_VECTORS =
+    {
+        new Vector3(1f, 0f, 0f),
+        new Vector3(-1f, 0f, 0f),
+        new Vector3(0f, 0f, 1f),
+        new Vector3(0f, 0f, -1f),
+    };
+
+    bool TryMatchWorldAxis(Vector3 input, out Vector3 worldAxisInput)
+    {
+        float best = -1000f;
+        Vector3 bestVec = Vector3.forward;
+        foreach(var v in VALID_PUSH_VECTORS)
+        {
+            float dot = Vector3.Dot(input, v);
+			if (dot > best)
+            {
+                best = dot;
+                bestVec = v;
+            }
+        }
+        worldAxisInput = bestVec;
+        return true;
     }
 
     void CastPushRay(Vector3 origin, Vector3 direction)
