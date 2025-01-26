@@ -19,9 +19,7 @@ public class PingToPlaySimonSaysSequence : Interactable
 
         isPlaying = true;
         transform.DOPunchScale(Vector3.one * 0.1f, 0.2f, 20);
-        var sequence = DOTween
-            .Sequence()
-            .AppendCallback(() => PlaySound(pingSound));
+        var sequence = DOTween.Sequence();
         
         foreach(var clip in soundSequence)
         {

@@ -12,6 +12,7 @@ public class PingSimonSaysElement : Interactable
         if(SimonSaysManager.completed)
             return;
         
+        transform.DOPunchScale(Vector3.one * 0.1f, 0.2f, 20);
         PlaySound(clip);
         DOTween.Sequence()
             .AppendInterval(clip.length)
