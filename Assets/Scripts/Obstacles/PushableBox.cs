@@ -25,6 +25,9 @@ public class PushableBox : MonoBehaviour
 
     Vector3 gridOffset;
 
+    public AudioSource pushAudio;
+    public AudioSource cannotPushAudio;
+
 	void Awake()
     {
         this.collider = GetComponent<Collider>();
@@ -101,16 +104,19 @@ public class PushableBox : MonoBehaviour
     void PushBlocked()
     {
         Debug.Log("PUSH WAS BLOCKED");
+        this.cannotPushAudio.Play();
     }
 
     void DoPush(Vector3 target)
     {
         transform.DOMove(target, 0.5f);
+        this.pushAudio.Play();
 	}
 
 	public void WantsToPush(Vector3 direction)
     {
-        this.pushAmount += Time.deltaTime * 2f;
+        this.pushAmount += Time.deltaTime * 1f;
+        Debug.Log(pushAmount);
 		this.isTryingToPush = true;
         this.pushDirection = direction;
 
