@@ -7,8 +7,10 @@ public class Exit : Interactable
     public override void Touch()
     {
         DOTween.Sequence()
-            .Append(MovePlayerOut())
-            .AppendCallback(() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
+            .Append(MovePlayerOut());
+        //.AppendCallback(() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
+
+        LevelTransition.OnLevelExitTriggered();
     }
 
     private Tween MovePlayerOut()
