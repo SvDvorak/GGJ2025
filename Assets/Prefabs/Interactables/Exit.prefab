@@ -45,7 +45,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &2693560469114362553
 AudioSource:
@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9bc9e022b8e5af4b962d4e473b8e69e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelExit: {fileID: 8300000, guid: 6bf7efab149faaf48b5b9642b21e9f00, type: 3}
 --- !u!1001 &8248415631654011008
 PrefabInstance:
   m_ObjectHideFlags: 0

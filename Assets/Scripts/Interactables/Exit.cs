@@ -1,9 +1,11 @@
 using DG.Tweening;
 using StarterAssets;
-using UnityEngine.SceneManagement;
+using UnityEngine;
 
 public class Exit : Interactable
 {
+    public AudioClip levelExit;
+    
     public override void Touch()
     {
         DOTween.Sequence()
@@ -19,6 +21,7 @@ public class Exit : Interactable
         var playerTransform = PlayerController.Instance.transform;
         return DOTween.Sequence()
             .Append(playerTransform.DOMove(transform.position, 1))
+            .AppendCallback(() => PlaySound(levelExit))
             .Append(playerTransform.DOMoveY(20, 1).SetEase(Ease.InSine));
     }
 }
