@@ -67,6 +67,14 @@ PrefabInstance:
       propertyPath: musicLayers.Array.data[3]
       value: 
       objectReference: {fileID: 8300000, guid: bdf7c532b2b31c545b5fb7c259799ace, type: 3}
+    - target: {fileID: 6058334406013084380, guid: 7906f2c21e15587488e4398ef182d597, type: 3}
+      propertyPath: layeredSnapshots.Array.data[1]
+      value: 
+      objectReference: {fileID: 3035085245496888011, guid: fe6896d25bff994458cef9f2a76a0a81, type: 2}
+    - target: {fileID: 6058334406013084380, guid: 7906f2c21e15587488e4398ef182d597, type: 3}
+      propertyPath: layeredSnapshots.Array.data[2]
+      value: 
+      objectReference: {fileID: 2602750811147442856, guid: fe6896d25bff994458cef9f2a76a0a81, type: 2}
     - target: {fileID: 6058334406013084381, guid: 7906f2c21e15587488e4398ef182d597, type: 3}
       propertyPath: m_Name
       value: Layered Music DESERT
