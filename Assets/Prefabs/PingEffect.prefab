@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audio: {fileID: 5800395140942742042}
   sound: {fileID: 8300000, guid: 04bf19c1e6288b949a3e2c9c996e707f, type: 3}
-  maxSize: 7
+  maxSize: 5
 --- !u!135 &2794724560195744615
 SphereCollider:
   m_ObjectHideFlags: 0
