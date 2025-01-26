@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PushableBox : MonoBehaviour
 {
-    const int PUSH_COLLISION_LAYER_MASK = 1 | (1 << 3);
+    const int PUSH_COLLISION_LAYER_MASK = 1 | (1 << 3) | (1 << 9);
 
     const float OVERLAP_VERTICAL_OFFSET = 0.6f;
     const float OVERLAP_VERTICAL_SIZE = 0.05f;

@@ -440,6 +440,7 @@ MonoBehaviour:
   - {fileID: 8511600926159687887, guid: fe6896d25bff994458cef9f2a76a0a81, type: 2}
   - {fileID: 3035085245496888011, guid: fe6896d25bff994458cef9f2a76a0a81, type: 2}
   - {fileID: 2602750811147442856, guid: fe6896d25bff994458cef9f2a76a0a81, type: 2}
+  sfxDefaultMixerGroup: {fileID: -1593402299786174212, guid: fe6896d25bff994458cef9f2a76a0a81, type: 2}
 --- !u!1 &6058334407057953498
 GameObject:
   m_ObjectHideFlags: 0

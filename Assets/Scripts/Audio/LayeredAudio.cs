@@ -17,6 +17,9 @@ public class LayeredAudio : MonoBehaviour
     public AudioMixerSnapshot defaultSnapshot;
     public AudioMixerSnapshot[] layeredSnapshots;
 
+    public AudioMixerGroup sfxDefaultMixerGroup;
+
+
     AudioSource[] sources;
 
     // Start is called before the first frame update
@@ -27,6 +30,22 @@ public class LayeredAudio : MonoBehaviour
         for(int i = 0; i < this.musicLayers.Length; i++)
         {
             this.sources[i].clip = this.musicLayers[i];
+        }
+
+        AutoAssignExistingAudioSourceGroups();
+    }
+
+    void AutoAssignExistingAudioSourceGroups()
+    {
+        var allAudioSources = FindObjectsOfType<AudioSource>(true);
+
+        foreach(var source in allAudioSources)
+        {
+            // Assume any unassigned audio sources should be mixed as SFX
+            if (source.outputAudioMixerGroup == null)
+            {
+                source.outputAudioMixerGroup = this.sfxDefaultMixerGroup;
+            }
         }
     }
 
