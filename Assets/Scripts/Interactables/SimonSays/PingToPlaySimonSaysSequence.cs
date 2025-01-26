@@ -8,23 +8,25 @@ public class PingToPlaySimonSaysSequence : Interactable
     public GameObject targetExpander;
     public AudioClip pingSound;
     public AudioClip sequenceSuccess;
-    public AudioClip sequenceFail;
     
     private bool isPlaying;
 
     public override void Ping()
     {
-        if(isPlaying || SimonSaysManager.completed)
+        if(isPlaying || SimonSaysManager.Instance.completed)
             return;
 
         isPlaying = true;
         transform.DOPunchScale(Vector3.one * 0.1f, 0.2f, 20);
         var sequence = DOTween.Sequence();
-        
-        foreach(var clip in soundSequence)
+
+        for(var i = 0; i < soundSequence.Count; i++)
         {
+            var clip = soundSequence[i];
+            var index = i;
             sequence.AppendInterval(0.8f)
                 .AppendCallback(() => PlaySound(clip))
+                .JoinCallback(() => SimonSaysManager.Instance.PlayGlow(index))
                 .AppendInterval(clip.length);
         }
 
@@ -37,10 +39,5 @@ public class PingToPlaySimonSaysSequence : Interactable
             .AppendCallback(() => PlaySound(sequenceSuccess))
             .AppendInterval(sequenceSuccess.length)
             .AppendCallback(() => targetExpander.SetActive(true));
-    }
-
-    public void PlayFail()
-    {
-        PlaySound(sequenceFail);
     }
 }

@@ -9,13 +9,13 @@ public class PingSimonSaysElement : Interactable
     
     public override void Ping()
     {
-        if(SimonSaysManager.completed)
+        if(SimonSaysManager.Instance.completed)
             return;
         
         transform.DOPunchScale(Vector3.one * 0.1f, 0.2f, 20);
         PlaySound(clip);
         DOTween.Sequence()
-            .AppendInterval(clip.length)
+            .AppendInterval(1)
             .AppendCallback(() => Pinged?.Invoke(this));
     }
 }

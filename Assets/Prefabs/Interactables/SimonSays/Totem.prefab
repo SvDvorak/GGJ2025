@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6567411344461833591}
   - component: {fileID: 6681139937560938175}
   m_Layer: 6
-  m_Name: SimonTotem
+  m_Name: Totem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

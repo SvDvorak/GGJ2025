@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 [RequireComponent(typeof(MeshRenderer))]
-public class BubbleVisual : MonoBehaviour
+public class ViewDirectionShading : MonoBehaviour
 {
     private MeshRenderer meshRenderer;
 
@@ -14,4 +15,7 @@ public class BubbleVisual : MonoBehaviour
     {
         meshRenderer.material.SetVector("_ViewDir", (transform.position - Camera.main.transform.position).normalized);
     }
+
+    public Tween FadeIn(float time) => meshRenderer.material.DOFade(1, time);
+    public Tween FadeOut(float time) => meshRenderer.material.DOFade(0, time);
 }
