@@ -12,13 +12,14 @@ public class LayeredAudio : MonoBehaviour
 
     public AudioClip[] musicLayers;
 
-    public bool autoTransitionToFirstLayer = true;
-
+    public AudioMixerSnapshot fadeInSnapshot;
     public AudioMixerSnapshot defaultSnapshot;
     public AudioMixerSnapshot[] layeredSnapshots;
+    public AudioMixerSnapshot transitionLevelSnapshot;
 
     public AudioMixerGroup sfxDefaultMixerGroup;
 
+    bool isChangingScene = false;
 
     AudioSource[] sources;
 
@@ -57,22 +58,30 @@ public class LayeredAudio : MonoBehaviour
             s.PlayScheduled(scheduledPlayTime);
         }
 
-        this.defaultSnapshot.TransitionTo(DEFAULT_TRANSITION_TIME);
-
-        if(this.autoTransitionToFirstLayer)
-        {
-            StartCoroutine(AutoTransitionFirst());
-        }
     }
 
-    IEnumerator AutoTransitionFirst()
+    public void OnLevelStart()
     {
-        yield return new WaitForSeconds(AUTO_TRANSITION_DELAY);
-        this.layeredSnapshots[0].TransitionTo(AUTO_TRANSITION_TIME);
+		this.fadeInSnapshot.TransitionTo(1f);
+	}
+
+    public void OnFadeIn()
+    {
+        StartCoroutine(FadeInRoutine());
+    }
+
+	IEnumerator FadeInRoutine()
+    {
+		this.defaultSnapshot.TransitionTo(3.5f);
+
+		yield return new WaitForSeconds(4f);
+        this.layeredSnapshots[0].TransitionTo(4f);
     }
 
     public void TransitionToLayer(int layerIndex)
     {
+        if (this.isChangingScene) return;
+
         StopAllCoroutines();
 
         if(layerIndex > this.layeredSnapshots.Length)
@@ -83,4 +92,12 @@ public class LayeredAudio : MonoBehaviour
 
         this.layeredSnapshots[layerIndex].TransitionTo(TRANSITION_TIME);
     }
+
+    public void TransitionToNextScene()
+    {
+        StopAllCoroutines();
+        this.isChangingScene = true;
+
+		transitionLevelSnapshot.TransitionTo(TRANSITION_TIME);
+	}
 }
