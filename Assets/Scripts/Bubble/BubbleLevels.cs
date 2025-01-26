@@ -10,6 +10,8 @@ public class BubbleLevels : MonoBehaviour
     public Transform bubbleMask;
     public List<float> cameraSizes;
     public LayeredAudio layeredAudio;
+    public AudioSource expandSound;
+    
     private List<MeshRenderer> levels;
     private int currentLevel;
     private Vector3 cameraOffset;
@@ -44,5 +46,6 @@ public class BubbleLevels : MonoBehaviour
         Camera.main.DOOrthoSize(cameraSizes[currentLevel], time);
         Camera.main.transform.DOMove(level.transform.position + cameraOffset, time);
         layeredAudio.TransitionToLayer(currentLevel);
+        expandSound.Play();
     }
 }

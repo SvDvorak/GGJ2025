@@ -23,9 +23,15 @@ public class PushableBox : MonoBehaviour
 	float ySpeed = 0f;
     bool isFalling;
 
+    Vector3 gridOffset;
+
 	void Awake()
     {
         this.collider = GetComponent<Collider>();
+
+        float offsetX = (this.transform.position.x + 100f) % 1f;
+        float offsetZ = (this.transform.position.z + 100f) % 1f;
+        this.gridOffset = new Vector3(offsetX, 0f, offsetZ);
     }
 
     void FixedUpdate()
@@ -71,8 +77,8 @@ public class PushableBox : MonoBehaviour
     {
         Vector3 pushTarget = this.transform.position;
 
-        pushTarget.x = Mathf.Round(pushTarget.x + this.pushDirection.x);
-        pushTarget.z = Mathf.Round(pushTarget.z + this.pushDirection.z);
+        pushTarget.x = Mathf.Round(pushTarget.x + this.pushDirection.x - this.gridOffset.x) + this.gridOffset.x;
+        pushTarget.z = Mathf.Round(pushTarget.z + this.pushDirection.z - this.gridOffset.z) + this.gridOffset.z;
 
         var overlapTarget = pushTarget;
         overlapTarget.y += OVERLAP_VERTICAL_OFFSET;
